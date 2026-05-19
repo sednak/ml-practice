@@ -1,0 +1,67 @@
+import pandas as pd
+  data=pd.read_csv("/archive (2).zip")
+data.head()
+  data.info
+  data.shape
+  data.describe()
+  data.isnull().sum()
+  data['Age'].fillna(data['Age'].mean(),inplace=True)
+  data.isnull().sum()
+  data['Embarked'].fillna(data['Embarked'].mode()[0],inplace=True)
+  data.isnull().sum()
+  data.drop('Cabin',axis=1,inplace=True)
+  data.columns
+  data.duplicated()
+  data.drop_duplicates(inplace=True)
+  import seaborn as sns
+import matplotlib.pyplot as plt
+sns.boxplot(x=data['Fare'])
+plt.show()
+  q1=data['Fare'].quantile(0.25)
+q3=data['Fare'].quantile(0.75)
+iqr=q3-q1
+lower=q1-1.5*iqr
+upper=q3+1.5*iqr
+data=data[(data['Fare']>=lower)&(data['Fare']<=upper)]
+  import seaborn as sns
+import matplotlib.pyplot as plt
+sns.boxplot(x=data['Fare'])
+plt.show()
+  from sklearn.preprocessing import LabelEncoder
+Encoder=LabelEncoder()
+data['Sex']=Encoder.fit_transform(data['Sex'])
+  data.head(10)
+  data=pd.get_dummies(data,columns=['Embarked'])
+data.head()
+  import pandas as pd
+data1=pd.read_csv("/archive (2).zip")
+data1.head()
+  data1=pd.get_dummies(data1,columns=['Embarked'],dtype=int)
+data1.head()
+  from sklearn.preprocessing import MinMaxScaler
+scaler=MinMaxScaler()
+data[['Age','Fare']]=scaler.fit_transform(data[['Age','Fare']])
+data.head()
+  x=data.drop('Survived',axis=1)
+y=data['Survived']
+  from re import split
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.3,random_state=43)
+  from sklearn.preprocessing import StandardScaler
+scaler_std=StandardScaler()
+x_train[['Age','Fare']]=scaler_std.fit_transform(x_train[['Age','Fare']])
+x_test[['Age','Fare']]=scaler_std.transform(x_test[['Age','Fare']])
+data.head()
+  import pandas as pd
+data2=pd.read_csv("/archive (2).zip")
+data2.head()
+  data2['Age'].fillna(data2['Age'].mean(),inplace=True)
+  data2['Embarked'].fillna(data2['Embarked'].mode()[0],inplace=True)
+  data2.drop('Cabin',axis=1,inplace=True)
+  bins=[0,18,35,60,100]
+labels=['child','young adult','adult','senior']
+data2['age_group']=pd.cut(data2['Age'],bins=bins,labels=labels)
+data2.head()
+  print(data2[['Age','age_group']].head())
+  data2['fare_group']=pd.qcut(data2['Fare'],q=4,labels=["low","medium","high","extreme"])
+  print(data2[['Fare','fare_group']].head())
