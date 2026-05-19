@@ -1,0 +1,76 @@
+# implementation of basic ml codes for loading data into the medium
+# pandas
+# Day1
+  import pandas as pd
+data=pd.read_csv("/archive (3).zip")
+data.head(10)
+  from sklearn.datasets import load_iris
+import pandas as pd
+
+\
+iris = load_iris()
+
+
+data = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+
+data['species'] = [iris.target_names[i] for i in iris.target]
+
+data.head()
+  from sklearn.datasets import load_iris
+import pandas as pd
+iris=load_iris()
+irisdf=pd.DataFrame(data=iris.data,columns =iris.feature_names)
+irisdf.head()
+  from sklearn.datasets import load_iris
+import pandas as pd
+iris=load_iris()
+irisdf=pd.DataFrame(data=iris.data,columns =iris.feature_names)
+irisdf['species']=iris.target
+irisdf.head()
+  from sklearn.datasets import load_iris
+import pandas as pd
+iris=load_iris()
+irisdf=pd.DataFrame(data=iris.data,columns =iris.feature_names)
+irisdf['species']=[iris.target_names[i] for i in iris.target]
+irisdf.head()
+  # manually assinging column names
+import pandas as pd
+col_names = ["sl","sw","pl","pw","spec"]
+data=pd.read_csv("/archive (3).zip", header=None,names=col_names)
+data.head()
+  import pandas as pd
+col_names = ["sl","sw","pl","pw","spec"]
+data=pd.read_csv("/archive (3).zip", header=None,names=col_names,skiprows=1)
+data.head()
+  import pandas  as pd
+data=pd.read_csv('/archive (3).zip')
+data.head()
+  import pandas as pd
+
+data=pd.read_csv("/archive (3).zip")
+data.head()
+  data.describe()
+  data.info()
+  data.isnull().sum()
+  data.dtypes
+  unique=irisdf["species"].unique()
+unique
+  nunique=irisdf["species"].nunique()
+nunique
+  group=data.groupby('sepal_length')['species']
+group.head()
+  group=data.groupby('sepal_length')["species"].count().reset_index()
+group.head()
+  data['species'].value_counts()
+  import matplotlib.pyplot as plt
+import seaborn as sns
+
+irisdf.hist(figsize=(10,6))
+plt.show()
+  sns.countplot(x='species',data=data)
+plt.show()
+sns.pairplot(data,hue='species')
+plt.show()
+ 
+  
+  
