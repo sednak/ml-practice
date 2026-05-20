@@ -1,0 +1,34 @@
+import pandas as pd
+from sklearn.datasets import load_breast_cancer
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
+data=load_breast_cancer()
+df=pd.DataFrame(data=data.data,columns=data.feature_names)
+  df['target']=data.target
+df.head()
+  df.shape
+  df.describe()
+  df.dtypes
+  x=df.drop('target',axis=1)
+y=df['target']
+  train,x_test,y_train,y_test=train_test_split(x,y,test_size=0,random_state=42)
+    model=LogisticRegression(max_iter=1000)
+    model.fit(x_train,y_train)
+    y_pred=model.predict(x_test)
+    y_pred
+    sample = []
+for column in x.columns:
+  value = float(input(f"enter value for {column} (use . for decimals):"))
+  sample.append(value)
+sample = [sample]
+    prediction=model.predict(sample)
+print ("prediction",prediction[0])
+    probability=model.predict_proba(sample)
+    accuracy=accuracy_score(y_test,y_pred)
+print("accuracy",accuracy)
+probability
+    confusion =confusion_matrix(y_test,y_pred)
+confusion
+    report=classification_report(y_test,y_pred)
+print(report)
