@@ -1,0 +1,35 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
+df=pd.read_csv("/content/Titanic-Dataset.csv")
+df.head()
+  
+df['Survived']=data.Survived
+df.head()
+  df.shape
+  df.info()
+  df.describe()
+  df.dtypes
+  x = data.drop(['Survived', 'Name', 'Ticket', 'PassengerId'], axis=1)
+y = data['Survived']
+  x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=42)
+    model=LogisticRegression(max_iter=1000)
+    model.fit(x_train,y_train)
+    y_pred=model.predict(x_test)
+    y_pred
+    sample = []
+for column in x.columns:
+  value = float(input(f"enter value for {column} (use . for decimals):"))
+  sample.append(value)
+sample = [sample]
+    prediction=model.predict(sample)
+    probability=model.predict_proba(sample)
+probability
+print ("prediction",prediction[0])
+    accuracy=accuracy_score(y_test,y_pred)
+print("accuracy",accuracy)
+    confusion =confusion_matrix(y_test,y_pred)
+confusion
+    report=classification_report(y_test,y_pred)
+print(report)
